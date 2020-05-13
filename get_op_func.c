@@ -23,12 +23,13 @@ void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 
 	while (opcode_fun[pos_op].opcode)
 	{
-		if (strcmp(opcode_fun[pos_op].opcode[0], opcode[0]) == 0)
+		if (strcmp(opcode_fun[pos_op].opcode, opcode[0]) == 0)
 		{
 			return (opcode_fun[pos_op].f);
 		}
 		pos_op++;
 	}
 	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", line, opcode[0]);
+	free_grid(opcode);
 	exit(EXIT_FAILURE);
 }
