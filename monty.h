@@ -1,7 +1,7 @@
 #ifndef _MONTY_H
 #define _MONTY_H
 /*Global variables definition*/
-extern char **opcode;
+
 /*This space is reserved library calls*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +12,8 @@ extern char **opcode;
 #include <string.h>
 
 /*This space is reserved for structure definitions*/
+
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -29,6 +31,23 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
+
+/**
+ * struct creator_params - singly linked list
+ * @opcode: pointer that stores what the user writes
+ * @fd: counter of shell, shows error in the lines
+ * @head: path of the enviroment variable
+ *
+ * Description: This structure give us input arguments
+ * to create processes -
+ */
+typedef struct creator_params
+{
+	char **opcode;
+	FILE *fd;
+	stack_t *head;
+} creator_args;
+extern creator_args c_args;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -56,5 +75,5 @@ int _strlen(char *s);
 void free_grid(char **grid);
 void (*get_op_func(int line))(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
-void free_all(stack_t *stack, char **grid);
+void free_all(void);
 #endif /* _MONTY_H */

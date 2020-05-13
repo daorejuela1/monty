@@ -12,30 +12,30 @@ void push(stack_t **stack, unsigned int line_number)
 	stack_t *new = NULL, *tmp = *stack;
 	int i;
 
-	new = malloc(sizeof(stack_t));
-	if (opcode[1] == NULL)
+	if (c_args.opcode[1] == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
-		free_all(*stack, opcode);
+		free_all();
 	}
-	for (i = 0; opcode[1][i] != 0; i++)
+	for (i = 0; c_args.opcode[1][i] != 0; i++)
 	{
-		if (opcode[1][i] < '0' || opcode[1][i] > '9')
+		if (c_args.opcode[1][i] < '0' || c_args.opcode[1][i] > '9')
 		{
 			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
-			free_all(*stack, opcode);
+			free_all();
 		}
 	}
+	new = malloc(sizeof(stack_t));
 	if (new != NULL)
 	{
-		new->n = atoi(opcode[1]);
-		new->prev = NULL;
-		new->next = NULL;
+		new->n = atoi(c_args.opcode[1]);
+		new->prev = NULL, new->next = NULL;
 	}
 	else
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
-		free_all(*stack, opcode);
+		free(new);
+		free_all();
 	}
 	if (*stack == NULL)
 	{
@@ -106,14 +106,12 @@ void free_stack(stack_t *stack)
 
 /**
  * free_all - Free a list.
- * @stack: pointer to head element of list
- * @grid: pointer to char matrix
- *
  * Return: Nothing
  */
-void free_all(stack_t *stack, char **grid)
+void free_all(void)
 {
-	free_grid(grid);
-	free_stack(stack);
+	free_grid(c_args.opcode);
+	free_stack(c_args.head);
+	fclose(c_args.fd);
 	exit(EXIT_FAILURE);
 }

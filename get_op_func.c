@@ -1,9 +1,8 @@
 #include "monty.h"
-
+#define ERR_MESSAGE "L%d: unknown instruction %s\n"
 /**
  * get_op_func - Select the function according to the opcode.
  * @line: Line number of file
- *
  * Return: 0 (success).
  */
 
@@ -19,13 +18,13 @@ void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 
 	while (opcode_fun[pos_op].opcode)
 	{
-		if (strcmp(opcode_fun[pos_op].opcode, opcode[0]) == 0)
+		if (strcmp(opcode_fun[pos_op].opcode, c_args.opcode[0]) == 0)
 		{
 			return (opcode_fun[pos_op].f);
 		}
 		pos_op++;
 	}
-	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", line, opcode[0]);
-	free_grid(opcode);
+	dprintf(STDERR_FILENO, ERR_MESSAGE, line, c_args.opcode[0]);
+	free_all();
 	exit(EXIT_FAILURE);
 }
