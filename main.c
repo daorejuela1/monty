@@ -32,13 +32,16 @@ int main(int ac, char **av)
 	while (fgets(buf, BUFFER_SIZE, fd) != NULL)
 	{
 		opcode = extract_string(buf, &data_length);
-		pointer_to_function = get_op_func(line_counter);
-		if (pointer_to_function != NULL)
+		if (opcode[0] != NULL)
+		{
+			pointer_to_function = get_op_func(line_counter);
 			(*pointer_to_function)(&head, line_counter);
+		}
 		line_counter++;
 		free_grid(opcode);
 		data_length = 0;
 	}
+	free_stack(head);
 	fclose(fd);
 	return (0);
 }

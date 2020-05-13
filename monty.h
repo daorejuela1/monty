@@ -55,4 +55,6 @@ char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
 void free_grid(char **grid);
 void (*get_op_func(int line))(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
+void free_all(stack_t *stack, char **grid);
 #endif /* _MONTY_H */

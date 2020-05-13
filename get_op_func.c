@@ -2,10 +2,7 @@
 
 /**
  * get_op_func - Select the function according to the opcode.
- * @opcode: Pointer to the opcode.
- * @arg: Pointer to arg of file
- * @stack: Pointer to head of stack list
- * @line_number: Line number of file
+ * @line: Line number of file
  *
  * Return: 0 (success).
  */
