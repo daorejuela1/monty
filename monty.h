@@ -2,9 +2,16 @@
 #define _MONTY_H
 
 /*This space is reserved library calls*/
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <string.h>
 
 /*This space is reserved for structure definitions*/
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -36,8 +43,15 @@ typedef struct instruction_s
 } instruction_t;
 
 /*This space is reserved for function prototypes*/
+FILE *open_file(const char *filename);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
+char **extract_string(char *string, int *data_length);
+void *_calloc(unsigned int nmemb, unsigned int size);
+char *_memset(char *s, char b, unsigned int n);
+char *_strncpy(char *dest, char *src, int n);
+int _strlen(char *s);
+void free_grid(char **grid);
 
 #endif /* _MONTY_H */
