@@ -27,11 +27,8 @@ void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 		{
 			return (opcode_fun[pos_op].f);
 		}
-		else
-		{
-			printf("L%d: unknown instruction %s\n", line, opcode[0]);
-			exit(EXIT_FAILURE);
-		}
 		pos_op++;
 	}
+	dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n", line, opcode[0]);
+	exit(EXIT_FAILURE);
 }

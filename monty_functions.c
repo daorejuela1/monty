@@ -8,21 +8,38 @@
  * Return: Nothing
  */
 
-void push(stack_t **stack, char *num, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = NULL, *tmp = *stack;
-
+	int i;
 	new = malloc(sizeof(stack_t));
+
+	if (opcode[1] == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+		exit (EXIT_FAILURE);
+	}
+
+	for (i = 0; opcode[i] != 0; i++)
+	{
+		if (opcode[1] < '0' || opcode[1] > '9')
+		{
+			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+			exit (EXIT_FAILURE);
+		}
+		else
+			continue;
+	}
 
 	if (new != NULL)
 	{
-		new->n = atoi(num);
+		new->n = atoi(opcode[1]);
 		new->prev = NULL;
 		new->next = NULL;
 	}
 	else
 	{
-		printf("Error: malloc failed\n");
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
