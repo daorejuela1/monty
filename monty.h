@@ -1,7 +1,9 @@
 #ifndef _MONTY_H
 #define _MONTY_H
+
 /*This space is reserved library calls*/
 #include <stdlib.h>
+
 /*This space is reserved for structure definitions*/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -14,10 +16,11 @@
  */
 typedef struct stack_s
 {
-		int n;
-		struct stack_s *prev;
-		struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -28,10 +31,13 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-		char *opcode;
-		void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
 /*This space is reserved for function prototypes*/
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
-#endif
+void pop(stack_t **stack, unsigned int line_number);
+
+#endif /* _MONTY_H */
