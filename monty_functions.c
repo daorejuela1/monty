@@ -17,14 +17,16 @@ void push(stack_t **stack, unsigned int line_number)
 	if (opcode[1] == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+		free_grid(opcode);
 		exit (EXIT_FAILURE);
 	}
 
 	for (i = 0; opcode[i] != 0; i++)
 	{
-		if (opcode[1] < '0' || opcode[1] > '9')
+		if (opcode[1][i] < '0' || opcode[1][i] > '9')
 		{
 			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+			free_grid(opcode);
 			exit (EXIT_FAILURE);
 		}
 		else
@@ -40,6 +42,7 @@ void push(stack_t **stack, unsigned int line_number)
 	else
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		free_grid(opcode);
 		exit(EXIT_FAILURE);
 	}
 
@@ -69,14 +72,15 @@ void push(stack_t **stack, unsigned int line_number)
 
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t num = 0;
+	int num = 0;
+	(void) line_number;
 
 	for (num = 0; stack != NULL; num++)
 	{
 		if (stack == NULL || *stack == NULL)
 			return;
 		else
-			printf("%i\n", stack->n);
-		stack = stack->next;
+			printf("%i\n", (*stack)->n);
+		(*stack) = stack->next;
 	}
 }
