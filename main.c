@@ -14,6 +14,7 @@ int main(int ac, char **av)
 	struct stat st;
 	char buf[BUFFER_SIZE], **opcode = NULL, *result = NULL;
 	int data_length = 0, line_counter = 1;
+	stack_t *head = NULL;
 
 	if (ac != 2)
 	{
@@ -30,6 +31,8 @@ int main(int ac, char **av)
 	{
 		opcode = extract_string(buf, &data_length);
 		pointer_to_function = get_op_func(line_counter);
+		if (pointer_to_function != NULL)
+			(*pointer_to_function)(&head, line_counter);
 		line_counter++;
 		free_grid(opcode);
 		data_length = 0;
