@@ -81,6 +81,6 @@ void pall(stack_t **stack, unsigned int line_number)
 			return;
 		else
 			printf("%i\n", (*stack)->n);
-		(*stack) = stack->next;
+		(*stack) = (*stack)->next;
 	}
 }
