@@ -21,7 +21,7 @@ void push(stack_t **stack, unsigned int line_number)
 		exit (EXIT_FAILURE);
 	}
 
-	for (i = 0; opcode[i] != 0; i++)
+	for (i = 0; opcode[1][i] != 0; i++)
 	{
 		if (opcode[1][i] < '0' || opcode[1][i] > '9')
 		{

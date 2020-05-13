@@ -1,5 +1,6 @@
 #include "monty.h"
 #define BUFFER_SIZE 1024
+char **opcode;
 /**
  * main - This receives the data path
  * from the monty file.
@@ -10,12 +11,13 @@
 int main(int ac, char **av)
 {
 	FILE *fd;
-	ssize_t n;
 	struct stat st;
-	char buf[BUFFER_SIZE], **opcode = NULL, *result = NULL;
+	char buf[BUFFER_SIZE];
 	int data_length = 0, line_counter = 1;
 	stack_t *head = NULL;
+	void (*pointer_to_function)(stack_t**, unsigned int);
 
+	opcode = NULL;
 	if (ac != 2)
 	{
 		dprintf(STDERR_FILENO, "USAGE: monty file\n");
