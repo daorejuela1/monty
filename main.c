@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#include <unistd.h>
 #define BUFFER_SIZE 1024
 /**
  * main - This receives the data path
@@ -31,8 +29,7 @@ int main(int ac, char **av)
 	while (fgets(buf, BUFFER_SIZE, fd) != NULL)
 	{
 		opcode = extract_string(buf, &data_length);
-		printf("Instruction %d: Opcode: %s Arg: %s\n", line_counter, opcode[0], opcode[1]);
-		/*pointer_to_function = get_op_func(opcode[0], opcode[1]);*/
+		pointer_to_function = get_op_func(line_counter);
 		line_counter++;
 		free_grid(opcode);
 		data_length = 0;

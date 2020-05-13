@@ -1,6 +1,7 @@
 #ifndef _MONTY_H
 #define _MONTY_H
-
+/*Global variables definition*/
+extern char **opcode;
 /*This space is reserved library calls*/
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,5 +54,5 @@ char *_memset(char *s, char b, unsigned int n);
 char *_strncpy(char *dest, char *src, int n);
 int _strlen(char *s);
 void free_grid(char **grid);
-
+void (*get_op_func(int line))(stack_t **stack, unsigned int line_number);
 #endif /* _MONTY_H */
