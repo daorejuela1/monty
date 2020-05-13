@@ -10,7 +10,7 @@
  * Return: 0 (success).
  */
 
-void (*get_op_func(char *opcode, char *arg ))(stack_t **stack, unsigned int line_number)
+void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 {
 	instruction_t opcode_fun[] = {
 		{"push", push},
@@ -25,12 +25,11 @@ void (*get_op_func(char *opcode, char *arg ))(stack_t **stack, unsigned int line
 	{
 		if (opcode_fun[pos_op].opcode[0] == opcode)
 		{
-			(opcode_fun[pos_op].f)(stack, line_number);
-			return (EXIT_SUCCESS);
+			return (opcode_fun[pos_op].f)(stack, line);
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s\n", line_number, opcode);
+			printf("L%d: unknown instruction %s\n", line, opcode);
 			exit(EXIT_FAILURE);
 		}
 		pos_op++;
