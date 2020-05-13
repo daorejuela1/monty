@@ -23,13 +23,13 @@ void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 
 	while (opcode_fun[pos_op].opcode)
 	{
-		if (opcode_fun[pos_op].opcode[0] == opcode)
+		if (strcmp(opcode_fun[pos_op].opcode[0], opcode[0]) == 0)
 		{
-			return (opcode_fun[pos_op].f)(stack, line);
+			return (opcode_fun[pos_op].f);
 		}
 		else
 		{
-			printf("L%d: unknown instruction %s\n", line, opcode);
+			printf("L%d: unknown instruction %s\n", line, opcode[0]);
 			exit(EXIT_FAILURE);
 		}
 		pos_op++;
