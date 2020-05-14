@@ -34,22 +34,25 @@ void pint(stack_t **stack, unsigned int line_number)
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	int i = 0, backup = 0;
+	int data_length = 0, backup = 0;
 
 	if (stack == NULL || *stack == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
 		free_all();
 	}
-	for (i = 0; tmp->next != NULL; i++)
+	for (data_length = 0; tmp != NULL; data_length++)
 	{
 		tmp = tmp->next;
 	}
-	if (i < 1)
+	if (data_length < 2)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
 		free_all();
 	}
+	tmp = *stack;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
 	backup = tmp->prev->n;
 	tmp->prev->n = tmp->n;
 	tmp->n = backup;
