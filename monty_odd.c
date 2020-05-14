@@ -34,7 +34,6 @@ void pint(stack_t **stack, unsigned int line_number)
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	int data_length = 0;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
