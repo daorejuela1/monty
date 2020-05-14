@@ -1,8 +1,7 @@
-push 1
-push 0
+push -25
+push -0
 swap
-push 3
-push 2
+push -2
 swap
-
-pall
+push -1
+pall 1

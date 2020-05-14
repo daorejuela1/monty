@@ -42,9 +42,7 @@ void swap(stack_t **stack, unsigned int line_number)
 		free_all();
 	}
 	for (data_length = 0; tmp != NULL; data_length++)
-	{
 		tmp = tmp->next;
-	}
 	if (data_length < 2)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
@@ -56,4 +54,17 @@ void swap(stack_t **stack, unsigned int line_number)
 	tmp->prev->n = tmp->prev->n ^ tmp->n;
 	tmp->n = tmp->prev->n ^ tmp->n;
 	tmp->prev->n = tmp->prev->n ^ tmp->n;
+}
+
+/**
+ * nop  - does nothing
+ * @stack: pointer to head element of stack list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
 }
