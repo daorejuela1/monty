@@ -84,16 +84,18 @@ void pall(stack_t **stack, unsigned int line_number)
 
 void free_stack(stack_t *stack)
 {
-	stack_t *tmp, *store;
+	stack_t *tmp;
 
-	tmp = stack;
+	if (stack == NULL)
+		return;
 
-	while (tmp != NULL)
+	while (stack != NULL)
 	{
-		store = tmp->next;
+		tmp = stack;
+		stack = stack->next;
 		free(tmp);
-		tmp = store;
 	}
+	free(stack);
 }
 
 /**
