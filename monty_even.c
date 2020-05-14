@@ -48,3 +48,26 @@ void add(stack_t **stack, unsigned int line_number)
 	tail->prev->next = NULL;
 	free(tail);
 }
+
+/**
+ * sub - Subtracts the top two elements of the stack_t list.
+ * @stack: pointer to head element of list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tail = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't sub, stack too short\n", line_number);
+		free_all();
+	}
+	while (tail->next != NULL)
+		tail = tail->next;
+	tail->prev->n -= tail->n;
+	tail->prev->next = NULL;
+	free(tail);
+}
