@@ -1,5 +1,5 @@
 #include "monty.h"
-
+#define MESS_RANGE "L%d: can't pchar, value out of range\n"
 /**
  * pint - prints the value at top of the stack
  * @stack: pointer to head element of stack list
@@ -75,7 +75,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || *stack == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty", line_number);
+		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty\n", line_number);
 		free_all();
 	}
 	while (tmp->next != NULL)
@@ -84,7 +84,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 	}
 	if (tmp->n < 0 || tmp->n > 127)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pchar, value out of range", line_number);
+		dprintf(STDERR_FILENO, MESS_RANGE, line_number);
 		free_all();
 	}
 	printf("%c\n", (char)tmp->n);
