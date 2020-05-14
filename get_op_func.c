@@ -11,6 +11,7 @@ void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 	instruction_t opcode_fun[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
