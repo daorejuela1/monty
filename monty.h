@@ -78,4 +78,5 @@ void free_stack(stack_t *stack);
 void free_all(void);
 void is_number(unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
 #endif /* _MONTY_H */
