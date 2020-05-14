@@ -32,7 +32,7 @@ int main(int ac, char **av)
 	while (fgets(buf, BUFFER_SIZE, c_args.fd) != NULL)
 	{
 		c_args.opcode = extract_string(buf, &data_length);
-		if (c_args.opcode[0] != NULL)
+		if (c_args.opcode[0] != NULL && c_args.opcode[0][0] != '#')
 		{
 			pointer_to_function = get_op_func(line_counter);
 			(*pointer_to_function)(&c_args.head, line_counter);

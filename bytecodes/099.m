@@ -1,3 +1,6 @@
-push 0
-apush /
-  push 3
+#push 0
+   #apsda
+push 2
+push 3
+
+pall
