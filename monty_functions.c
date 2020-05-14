@@ -10,21 +10,13 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new = NULL, *tmp = *stack;
-	int i;
 
 	if (c_args.opcode[1] == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
 		free_all();
 	}
-	for (i = 0; c_args.opcode[1][i] != 0; i++)
-	{
-		if (c_args.opcode[1][i] < '0' || c_args.opcode[1][i] > '9')
-		{
-			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
-			free_all();
-		}
-	}
+	is_number(line_number);
 	new = malloc(sizeof(stack_t));
 	if (new != NULL)
 	{
@@ -114,4 +106,27 @@ void free_all(void)
 	free_stack(c_args.head);
 	fclose(c_args.fd);
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * is_number - Verify if opcode is a number
+ * @line_number: Error line number
+ *
+ * Return: Nothing
+ */
+void is_number(unsigned int line_number)
+{
+	int i, start = 0;
+
+	if (c_args.opcode[1][0] == '-' && c_args.opcode[1][1] != 0)
+		start = 1;
+
+	for (i = start; c_args.opcode[1][i] != 0; i++)
+	{
+		if (c_args.opcode[1][i] < '0' || c_args.opcode[1][i] > '9')
+		{
+			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+			free_all();
+		}
+	}
 }
