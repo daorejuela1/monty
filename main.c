@@ -1,5 +1,5 @@
 #include "monty.h"
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 10024
 creator_args c_args;
 /**
  * main - This receives the data path
