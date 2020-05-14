@@ -88,5 +88,37 @@ void pchar(stack_t **stack, unsigned int line_number)
 		free_all();
 	}
 	printf("%c\n", (char)tmp->n);
+}
 
+/**
+ * pstr - prints the top character of the stack
+ * @stack: pointer to head element of stack list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	(void) line_number;
+
+	if (stack == NULL || *stack == NULL)
+	{
+		printf("\n");
+		return;
+	}
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	while (tmp != NULL)
+	{
+		if (tmp->n <= 0 || tmp->n > 127)
+		{
+			break;
+		}
+		printf("%c", (char)tmp->n);
+		tmp = tmp->prev;
+	}
+	printf("\n");
 }
