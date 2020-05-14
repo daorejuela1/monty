@@ -60,3 +60,33 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void)stack;
 	(void)line_number;
 }
+
+/**
+ * pchar - prints the top character of the stack
+ * @stack: pointer to head element of stack list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	(void) line_number;
+
+	if (stack == NULL || *stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty", line_number);
+		free_all();
+	}
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	if (tmp->n < 0 || tmp->n > 127)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pchar, value out of range", line_number);
+		free_all();
+	}
+	printf("%c\n", (char)tmp->n);
+
+}

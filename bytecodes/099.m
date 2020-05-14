@@ -1,6 +1,3 @@
-#push 0
-   #apsda
-push 2
-push 3
-
+push 72
+pchar
 pall
