@@ -25,3 +25,30 @@ void rotl(stack_t **stack, unsigned int line_number)
 	origin->prev = tail;
 	*stack = tail;
 }
+
+/**
+ * rotr - rotates stack to the right
+ * @stack: pointer to head element of stack list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tail = *stack, *origin = *stack;
+
+	(void) line_number;
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	{
+		return;
+	}
+	while (tail->next != NULL)
+	{
+		tail = tail->next;
+	}
+	*stack = origin->next;
+	(*stack)->prev = NULL;
+	origin->next = NULL;
+	origin->prev = tail;
+	tail->next = origin;
+}
