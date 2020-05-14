@@ -1,7 +1,12 @@
-push -5
+push -25
+push -0
+nop
+nop
+nop
+nop
+ nop
+swap
 push -2
-push 0
-push -9
-pall
-pall
-pall
+swap
+push -1
+pall 1
