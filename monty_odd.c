@@ -36,14 +36,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *tmp = *stack;
 	int data_length = 0;
 
-	if (stack == NULL || *stack == NULL)
-	{
-		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
-		free_all();
-	}
-	for (data_length = 0; tmp != NULL; data_length++)
-		tmp = tmp->next;
-	if (data_length < 2)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
 		free_all();
