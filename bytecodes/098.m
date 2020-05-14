@@ -1,6 +1,7 @@
-push 1
-push a
-push 3
+push -5
+push -2
+push 0
+push -9
 pall
-hola
+pall
 pall
