@@ -34,7 +34,7 @@ void pint(stack_t **stack, unsigned int line_number)
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
-	int data_length = 0, backup = 0;
+	int data_length = 0;
 
 	if (stack == NULL || *stack == NULL)
 	{
@@ -53,7 +53,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	tmp = *stack;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
-	backup = tmp->prev->n;
-	tmp->prev->n = tmp->n;
-	tmp->n = backup;
+	tmp->prev->n = tmp->prev->n ^ tmp->n;
+	tmp->n = tmp->prev->n ^ tmp->n;
+	tmp->prev->n = tmp->prev->n ^ tmp->n;
 }
