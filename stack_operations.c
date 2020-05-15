@@ -62,19 +62,19 @@ void rotr(stack_t **stack, unsigned int line_number)
  */
 void pop(stack_t **stack, unsigned int line_number)
 {
-        stack_t *current = *stack;
+	stack_t *current = *stack;
 
-        if (stack == NULL || *stack == NULL)
-        {
-                dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
-                exit(EXIT_FAILURE);
-        }
-        while (current->next != NULL)
-                current = current->next;
-        if (current->prev != NULL)
-                current->prev->next = NULL;
-        else
-                *stack = NULL;
-        free(current);
-        current = NULL;
+	if (stack == NULL || *stack == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	while (current->next != NULL)
+		current = current->next;
+	if (current->prev != NULL)
+		current->prev->next = NULL;
+	else
+			*stack = NULL;
+	free(current);
+	current = NULL;
 }
