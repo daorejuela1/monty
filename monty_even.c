@@ -99,3 +99,26 @@ void diva(stack_t **stack, unsigned int line_number)
 	tail->prev->next = NULL;
 	free(tail);
 }
+
+/**
+ * mul - Subtracts the top two elements of the stack_t list.
+ * @stack: pointer to head element of list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tail = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't mul, stack too short\n", line_number);
+		free_all();
+	}
+	while (tail->next != NULL)
+		tail = tail->next;
+	tail->prev->n *= tail->n;
+	tail->prev->next = NULL;
+	free(tail);
+}
