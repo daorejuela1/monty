@@ -85,7 +85,7 @@ void diva(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't sub, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%d: can't div, stack too short\n", line_number);
 		free_all();
 	}
 	while (tail->next != NULL)
