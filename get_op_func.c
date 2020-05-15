@@ -18,6 +18,7 @@ void (*get_op_func(int line))(stack_t **stack, unsigned int line_number)
 		{"sub", sub},
 		{"div", diva},
 		{"mul", mul},
+		{"mod", moda},
 		{"nop", nop},
 		{"pchar", pchar},
 		{"pstr", pstr},

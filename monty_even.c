@@ -1,32 +1,6 @@
 #include "monty.h"
 
 /**
- * pop - adds a new node at the top of a stack_t list.
- * @stack: pointer to head element of list
- * @line_number: Line number of file
- *
- * Return: Nothing
- */
-void pop(stack_t **stack, unsigned int line_number)
-{
-	stack_t *current = *stack;
-
-	if (stack == NULL || *stack == NULL)
-	{
-		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	while (current->next != NULL)
-		current = current->next;
-	if (current->prev != NULL)
-		current->prev->next = NULL;
-	else
-		*stack = NULL;
-	free(current);
-	current = NULL;
-}
-
-/**
  * add - adds the top two elements of the stack_t list.
  * @stack: pointer to head element of list
  * @line_number: Line number of file
@@ -73,7 +47,7 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * diva - Divides the top two elements of the stack_t list.
+ * diva - Divides the second top element by the top element of the stack.
  * @stack: pointer to head element of list
  * @line_number: Line number of file
  *
@@ -101,7 +75,7 @@ void diva(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * mul - Subtracts the top two elements of the stack_t list.
+ * mul - Multiplies the top two elements of the stack_t list.
  * @stack: pointer to head element of list
  * @line_number: Line number of file
  *
@@ -119,6 +93,35 @@ void mul(stack_t **stack, unsigned int line_number)
 	while (tail->next != NULL)
 		tail = tail->next;
 	tail->prev->n *= tail->n;
+	tail->prev->next = NULL;
+	free(tail);
+}
+
+/**
+ * moda - Rest of the division of the second top element
+ * by the top element of stack.
+ * @stack: pointer to head element of list
+ * @line_number: Line number of file
+ *
+ * Return: Nothing
+ */
+void moda(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tail = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't mod, stack too short\n", line_number);
+		free_all();
+	}
+	while (tail->next != NULL)
+		tail = tail->next;
+	if (tail->n == 0)
+	{
+		dprintf(STDERR_FILENO, "L%d: division by zero\n", line_number);
+		free_all();
+	}
+	tail->prev->n = tail->prev->n % tail->n;
 	tail->prev->next = NULL;
 	free(tail);
 }
